@@ -4,20 +4,20 @@ plugins {
 
 android {
     namespace = "com.example.tutorialreto"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.tutorialreto"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures{
+        viewBinding = true
     }
 
     buildTypes {
@@ -44,4 +44,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // Retrofit: hace las peticiones HTTP por nosotros
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    // Gson: convierte el JSON del servidor en objetos Kotlin
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    // OkHttp + logging: motor de red y registro para depurar
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    // Corrutinas: para no congelar la app mientras se espera la red
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 }
